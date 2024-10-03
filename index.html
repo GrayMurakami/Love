@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Love_Btn</title>
   <style>
-    body{
+    body {
       background-image: url(./loveBtn.jpeg);
       background-size: cover;
       background-attachment: fixed;
@@ -17,40 +17,42 @@
       align-items: center;
       height: 100vh;
       position: relative;
+      overflow: hidden;
     }
 
-    img{
+    img {
       width: 200px;
       height: auto;
       box-shadow: 4px 4px darkred;
     }
 
-    .heart {
+    .heart, .name {
       position: absolute;
       bottom: 0;
+      animation: float 2.5s forwards; 
+      transition: transform 0.2s ease-in-out; 
+    }
+
+    .heart {
       font-size: 24px;
       color: red;
-      animation: float 2s forwards;
     }
 
     .name {
-      position: absolute;
-      bottom: 0;
       font-size: 30px;
       font-weight: bold;
       color: darkred;
-      animation: float 2s forwards;
     }
 
     @keyframes float {
-        0% {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-300px) scale(3);
-            opacity: 0;
-        }
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-300px) scale(2); 
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -58,37 +60,41 @@
 
   <div class="loveBtn">
     <button id="heartButton">
-      <img src="./Image.jpg" alt="">
+      <img src="./Image.jpg" alt="Love Button">
     </button>
-    <div id="heart"></div>
-    <div id="name"></div>
+    <div id="heartContainer"></div>
+    <div id="nameContainer"></div>
   </div>
 
   <script>
-    document.getElementById('heartButton').addEventListener('click', function() {
-        const nameContainer = document.getElementById("name");
-        const heartContainer = document.getElementById("heart");
-        const heart = document.createElement('div');
-        const name = document.createElement('div');
-        name.className = 'name';
-        name.textContent = "love Iana!"
-        heart.className = 'heart';
-        heart.textContent = '❤️';
+    document.getElementById('heartButton').addEventListener('click', function () {
+      const heartContainer = document.getElementById("heartContainer");
+      const nameContainer = document.getElementById("nameContainer");
 
-        name.style.left = Math.random() * 100 + 'vw';
-        heart.style.left = Math.random() * 100 + 'vw';
-      
-        nameContainer.appendChild(name);
-        heartContainer.appendChild(heart);
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '❤️';
 
-        setTimeout(() => {
-            heart.remove();
-        }, 2000);
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = "love Iana!";
 
-        setTimeOut(() => {
-          name.remove();
-        }, 3000);
+      const randomPosition = Math.random() * 60 + 20;
+      heart.style.left = randomPosition + 'vw';
+      name.style.left = randomPosition + 'vw';
+
+      heartContainer.appendChild(heart);
+      nameContainer.appendChild(name);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 2000);
+
+      setTimeout(() => {
+        name.remove();
+      }, 2500);
     });
   </script>
+
 </body>
 </html>
