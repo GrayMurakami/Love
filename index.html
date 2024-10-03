@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love_Btn</title>
+  <style>
+    body{
+      background-image: url(./loveBtn.jpeg);
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .loveBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    img{
+      width: 200px;
+      height: auto;
+      box-shadow: 4px 4px darkred;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: 0;
+      font-size: 24px;
+      color: red;
+      animation: float 2s forwards;
+    }
+
+    .name {
+      position: absolute;
+      bottom: 0;
+      font-size: 30px;
+      font-weight: bold;
+      color: darkred;
+      animation: float 2s forwards;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-300px) scale(3);
+            opacity: 0;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loveBtn">
+    <button id="heartButton">
+      <img src="./Image.jpg" alt="">
+    </button>
+    <div id="heart"></div>
+    <div id="name"></div>
+  </div>
+
+  <script>
+    document.getElementById('heartButton').addEventListener('click', function() {
+        const nameContainer = document.getElementById("name");
+        const heartContainer = document.getElementById("heart");
+        const heart = document.createElement('div');
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = "love Iana!"
+        heart.className = 'heart';
+        heart.textContent = '❤️';
+
+        name.style.left = Math.random() * 100 + 'vw';
+        heart.style.left = Math.random() * 100 + 'vw';
+      
+        nameContainer.appendChild(name);
+        heartContainer.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 2000);
+
+        setTimeOut(() => {
+          name.remove();
+        }, 3000);
+    });
+  </script>
+</body>
+</html>
